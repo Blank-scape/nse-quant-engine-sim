@@ -1,0 +1,28 @@
+{
+  "applets": [
+    {
+      "lastAccessTime": "2026-11-01T14:05:20.802522Z",
+      "firstAccessTime": "2026-11-01T14:05:20.802522Z",
+      "source": {
+        "sourceType": "BUNDLED",
+        "bundled": {
+          "id": "wizard-chess-3d"
+        }
+      },
+      "name": "Wizard Chess 3D",
+      "description": "Interactive 3D Gothic Cathedral Wizard Chess with sculpted stone pieces, cinematic melee captures, stone shatter physics, and single-player AI."
+    },
+    {
+      "lastAccessTime": "2026-11-01T11:53:12.584409Z",
+      "firstAccessTime": "2026-11-01T11:23:43.864244Z",
+      "source": {
+        "sourceType": "SPANNER",
+        "spanner": {
+          "id": "88634873-152f-49ee-893f-65e2ec266424"
+        }
+      },
+      "name": "NSE \u20b91L Quant & Sheet Forensic Terminal (v6.3)",
+      "description": "Quantitative audit, spreadsheet artifact inspector, Zerodha 2026 friction engine, and patched Production v6.3 Apps Script generator with Google Docs, Sheets, and Search Grounding."
+    }
+  ]
+}
