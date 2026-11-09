@@ -1,0 +1,8 @@
+# Environment and sensitive keys
+.env
+*.env
+.clasprc.json
+
+# Dependencies
+node_modules/
+tools/
