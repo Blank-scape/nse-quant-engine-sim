@@ -1,0 +1,13 @@
+{
+    "OldEngine":  {
+                      "WinRate":  10.8,
+                      "FinalEquity":  -608538.13147404115,
+                      "NetPnL":  -708538.13147404115
+                  },
+    "NewEngine":  {
+                      "WinRate":  44.241119483315394,
+                      "CashDecisions":  42,
+                      "FinalEquity":  167944.43775915369,
+                      "NetPnL":  67944.43775915369
+                  }
+}

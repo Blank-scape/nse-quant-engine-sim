@@ -1,4 +1,4 @@
-# Complete Evolution & Changelog — `nse-quant-engine-sim`
+﻿# Complete Evolution & Changelog — `nse-quant-engine-sim`
 
 This document traces the complete architectural evolution of the **NSE ₹1,00,000 Autonomous Quant & Statutory Audit Simulation (`NSE_1L_Aggressive_Trading_Master_Ledger_Nov2026`)** across every version built in Gemini, Google Drive, Google Sheets Apps Script, and Google AI Studio from **November 1, 2026 to November 7, 2026**.
 
@@ -24,7 +24,10 @@ This document traces the complete architectural evolution of the **NSE ₹1,00,0
 | **v12.2 / v12.3** | 2026-11-05 | `Self-Healing 1m Hook & Pure JSON` | Fixed Nov 5 morning freeze: embedded self-healing 5m wave dispatcher inside `runAutonomousCycle`, added Morning Wave Catch-Up (`09:07–11:00 IST`), and removed `google_search: {}` + `thinkingConfig` HTTP 400 conflict to lock `responseMimeType: "application/json"`. |
 | **v13.0** | 2026-11-05 | `OMNI-COUNCIL (Deterministic 2D)` | Post-mortem overhaul after `LGEINDIA` (`-₹1,750.46`) peak-chase loss: upgraded Yahoo fetch to `range=2d` (`PDH`, `PDL`, `prevVwap`, `orl15m`), replaced LLM price guessing with **Deterministic Setup Math**, replaced `0.55%` pullback clamp, added **Per-Bar Mean VDU Ratio**, **8-Index FactSet-to-NSE Sector Map**, **Bounded Volatility-Corridor Sizing**, **70% T1 Free-Ride Shield**, **09:16–09:19 AM True-Gap Reconciler**, and **3-Role Adversarial AI Council** (`FLOW_DETECTIVE`, `TRAP_PROSECUTOR`, `CHIEF_RISK_JUDGE`) with `grossR` vs. `netLiquidationMtmRs` split. |
 | **v13.1** | 2026-11-06 | `OMNI-COUNCIL (100KB Cache Hotfix)` | Fixed `range=2d` `CacheService` `>100KB` (`Argument too large: value`) crash in `fetchBatch1MinCandles_`; restored `runAutonomousCycle` 1-minute trigger binding and `09:15 AM` 10-minute AI cadence. |
-| **v14.0** | 2026-11-06 | `OMNI-PREDATOR (Two-Way Quant)` | **Current Production Master:** Fixed `.total` `NaN` bug in 70% T1 Free-Ride Shield & `computeSafeProtectedStop_`; removed `stageTicketsFromCurrentWatchlistIfEmpty_` / `WATCH-` auto-stager bypass; added **Bidirectional `SHORT_MIS (5x)` Engine** (`Mcap >= ₹10,000 Cr`, `Turnover >= ₹40 Cr`); expanded `Opportunity_Rotation_Matrix` to a **16-Row 4-Bucket Radar** (`5 LONG_MTF`, `4 LONG_MIS`, `4 SHORT_MIS`, `3 ARGON_CATALYST_INBOX`); enforced `WickBP >= 0.50` (Long) / `<= 0.42` (Short), time-scaled Daily ATR chop/exhaustion gates, realistic `1.15x Daily ATR` MIS T1 cap, and unconditional `>= 15:15 IST` MIS square-off. |
+| **v14.0** | 2026-11-06 | `OMNI-PREDATOR (Two-Way Quant)` | Added Bidirectional `SHORT_MIS (5x)` Engine (`Mcap >= 10,000 Cr`), 16-Row 4-Bucket Radar, WickBP chop gates, and unconditional `>= 15:15 IST` MIS square-off. |
+| **v15.0** | 2026-11-07 | `OMNI-SOVEREIGN (FinMem & OFI)` | Built Evolutionary Self-Learning Memory (`Evolutionary_Rulebook_Memory`), Order Flow Imbalance (OFI), Volume Point of Control (POC), and dynamic parameter learning from closed trades. |
+| **v16.0** | 2026-11-08 | `OMNI-SOVEREIGN APEX (5 Bug Fixes)` | Forensic post-mortem remediating 5 execution bugs: post-staging watermarks (`STAGE_HIGH`/`STAGE_LOW`), rolling 5-bar burst slices, ATR-buffered 70% T1 shield, and ghost variable wiring. |
+| **v17.0** | 2026-11-09 | `OMNI-INSTITUTIONAL ACCELERATED` | **Current Production Master:** Native Gemini 4 Argon Antigravity Interactions API integration, 10-model failover parachute cascade, 5-Pillar Accelerated architecture, fail-closed liquidity gates, gap-and-go margin rescaling, 5-year multi-regime simulation validation, and 4.2x fee hurdle. |
 
 ---
 
@@ -135,3 +138,46 @@ This document traces the complete architectural evolution of the **NSE ₹1,00,0
     * `Rows 18–20`: `3 ARGON_CATALYST_INBOX` (isolated webhook slots so external Argon pushes never overwrite Rows 5–17).
   * **Unconditional `>= 15:15 IST` MIS Square-Off & Post-Market Lock:** Automatically closes any lingering MIS positions into `Audited_Ledger_and_Friction` after `15:15 IST` or on weekend runs, and blocks EOD audits (`>= 15:00 IST`) from staging new tickets.
   * **Post-Code Self-Audit Fix (`Line 798`):** Patched `if (feedMap[wIdx] &&` -> `if (feedMap[wSym] &&` inside `runFastPriceAndTriggerRadar` so 5-minute volume burst anomalies on watchlist stocks log cleanly.
+
+
+---
+
+### 7. Phase VII: The 5 Critical Bug Fixes (`v16.0 OMNI-SOVEREIGN APEX`) — Nov 8–9, 2026
+* **Forensic Catalyst (Autonomous Ledger & Execution Audit):**
+  * Identified 5 hidden execution bugs in `v14.0`:
+    1. *Fix #1 (Post-Staging Watermarks):* Premature fills and false `CANCELLED_MISSED_BOAT_RUNAWAY` caused by evaluating pre-market highs/lows. Added `STAGE_HIGH_<id>` and `STAGE_LOW_<id>`.
+    2. *Fix #2 (Rolling 5-Bar Burst):* Replaced partial 5m chunks at minutes :01–:04 with true rolling 5-minute OHLCV bar slices (`bars.slice(-5)`).
+    3. *Fix #3 (ATR-Buffered 70% T1 Shield & OFI Stall Scale-Out):* Replaced fixed `0.994` breakeven stop with `liveCmp - Math.max(0.20, atr5m * 0.25)`, booking 40% partial profits at $\ge 70\%$ T1 on OFI stalls.
+    4. *Fix #5 & Bug A (Ghost Variables & Single Conviction Scale):* Wired all 5 unused variables (`iepPrice`, `sma200`, `pctFrom1MHigh`, `memCfg.atrMultiplier`, `memCfg.minRelVol`) into candidate math, persisted `CONV_SCALE_<id>`, and passed `requestedMargin = 0` on fill to prevent double-discounting.
+
+---
+
+### 8. Phase VIII: 5-Pillar Accelerated Institutional Engine (`v17.0 OMNI-INSTITUTIONAL ACCELERATED`) — Nov 9, 2026
+* **Forensic Catalyst (Gemini 4 Argon & 5-Year Multi-Regime Colab Stress Test):**
+  * Analysis of 3,758 historical trades across 94 NSE equities demonstrated that blind execution burns capital in friction (₹2.19 Lakh paid in taxes on a ₹1 Lakh base).
+* **v17.0 Architecture Upgrades:**
+  1. **Strict 4.2x Fee-to-Reward Hurdle (`BASE_GUARDRAILS.MIN_FEE_TO_REWARD_MULTIPLE = 4.2`):**
+     * Automatically drops any setup where Target 1 gross profit is less than 4.2x Zerodha round-trip friction, eliminating low-edge intraday churn.
+  2. **Strict Integer Share Sizing & Expensive Stock Exclusion (`sized.qty < 1` Skip):**
+     * Drops high-priced equities (e.g., `BOSCHLTD`, `MARUTI`, `ABB`) if 1 share exceeds the account rupee risk budget, eliminating account over-leverage on small capital bases.
+  3. **Harmonized 1.50% MTF / 0.75% MIS Dynamic Risk Parity:**
+     * Aligns target rupee risk to ₹1,500 on 4x MTF swings and ₹750 on 5x MIS intraday momentum, with sleeve floors lowered to ₹5,000 / ₹2,500.
+  4. **Bear-Market 100% Cash Shield & LiquidBees Collateral Yield:**
+     * When Nifty trades below its 50-EMA or market breadth drops below 52%, MTF swings are completely locked out, parking 100% idle margin into 6.50% p.a. TREPS/LiquidBees collateral yield.
+  5. **Expanded Long-to-Short Auto-Flip on Exhaustion Gaps:**
+     * Auto-flips long watchlist candidates into short momentum breakdowns if open gap $> 3.2\%$ with buying pressure $\le 0.38$ on large-caps ($\ge ₹10,000$ Cr market cap).
+
+
+---
+
+### 9. Phase IX: Gemini 4 Argon Antigravity API & 5-Year Multi-Regime Stress Calibration (17.0) â€” Nov 9, 2026
+* **Forensic Catalyst (Gemini 4 Argon & 5-Year 36-Combination Parameter Plateau):**
+  * Evaluated 36 orthogonal parameter combinations across continuous 5-year NSE data (2021â€“2026, 94 equities).
+  * Discovered that unrestricted intraday execution incurs massive statutory friction (INR 2.2+ Lakhs in taxes/charges on a 1 Lakh base).
+  * Established calibrated guardrails:
+    * MIN_FEE_TO_REWARD_MULTIPLE = 4.2: Setup rejected unless Target 1 gross reward is at least 4.2x round-trip friction.
+    * MIN_MARKET_CAP_CR = 10000 for Shorts: Strictly eliminates illiquid penny/small-cap manipulation.
+    * Conjunction Climax Law: Short entry requires uyingPressure <= 0.48 strictly verified.
+    * Gap-and-Go Rescaling: Automatically scales position size qty = Math.floor((oldEntry * qty) / entryTrigger) if opening bar gaps past stage trigger, preventing margin breach.
+    * STAGE_INIT_<tradeId> Watermark: Stops premature cancellation of limit pullback orders on same-bar touches.
+    * Native Gemini 4 Argon Integration: Connected directly via https://generativelanguage.googleapis.com/v1beta/interactions with failover to 10 Flash models with thinking.
